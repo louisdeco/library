@@ -47,3 +47,119 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+
+/* General styling */
+
+:root {
+    font-family: "Rubik", sans-serif;
+    --background-color: #f3f4f6;
+    --element-background-color: white;
+    --hover-button-color: #bebebe;
+    --font-color: black;
+    --spacing-s: 0.5rem;
+    --spacing-m: 1rem;
+    --spacing-l: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 8rem;
+    --font-weight-button: 450;
+    --border-radius: 0.4rem;
+}
+
+.grid-wrapper {
+    display: grid;
+    grid-template-rows: auto 15fr 1fr;
+    height: 100vh;
+    background-color: var(--background-color);
+}
+
+/* Utils */
+
+.btn {
+    border: none;
+    font-weight: var(--font-weight-button);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-s) var(--spacing-m);    
+}
+
+.btn:hover {
+    filter: brightness(90%);
+}
+
+/* Header styling */
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--element-background-color);
+    padding: var(--spacing-l) var(--spacing-xxl);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.header .title {
+    font-size: calc(1.5rem + 1vw);
+    font-weight: bold;
+}
+
+.log-in .btn {
+    font-size: calc(0.8rem + 0.4vw);
+}
+
+
+/* Main content */
+
+.main-container {
+    background-color: var(--background-color);
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-xxl);
+}
+
+.add {
+    background-color: inherit;
+    font-size: calc(1.4rem + 0.4vw);
+}
+
+.library {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-l);
+    margin-top: var(--spacing-xl);
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-m);
+    background-color: var(--element-background-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-m);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    font-size: calc(0.8rem + 0.5vw);
+    font-weight: 450;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-m);
+}
+
+/* Footer */
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    gap: var(--spacing-s);
+    font-weight: 450;
+}
+
+.icon {
+    background-image: url(../github.svg);
+    height: 1.5rem;
+    width: 1.5rem;
+    flex-shrink: 0;
+    align-self: center;
+}
