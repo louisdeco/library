@@ -63,7 +63,7 @@ function createBookCard(book) {
     pages.classList.add("pages");
     buttons.classList.add("buttons");
     readButton.classList.add("btn");
-    removeButton.classList.add("btn");
+    removeButton.classList.add("btn" ,"remove");
 
     title.textContent = `"${book.title}"`;
     author.textContent = book.author;
@@ -90,9 +90,13 @@ function createBookCard(book) {
 
     bookCard.bookObject = library[library.length - 1];
     
-/*     removeButton.addEventListener("click", () => {
-        alert("nice")
-    }) */
-
     libraryGrid.appendChild(bookCard)
 }
+
+// Delete card
+libraryGrid.addEventListener("click", (event) => {
+    alert(event.target.parentNode.bookObject.title)
+    if (event.target.className=="btn remove") {
+        libraryGrid.removeChild(event.target.parentNode.parentNode)
+    }
+})
