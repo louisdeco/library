@@ -28,7 +28,7 @@ dialog.addEventListener("click", (event) => {
     }
 })
 
-// Add book
+// Create book
 submitButton.addEventListener("click", (event) => {
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
@@ -93,20 +93,43 @@ function createBookCard(book) {
     libraryGrid.appendChild(bookCard)
 }
 
-// Delete card
+// Book manipulation
 libraryGrid.addEventListener("click", (event) => {
-    if (event.target.className=="btn remove") {
-        const child = event.target.parentNode.parentNode
-        const childObjectTitle = child.bookObject.title
+
+    // Book removal
+    if (event.target.className === "btn remove") {
+        const bookCard = event.target.parentNode.parentNode;
+        const bookCardObjectTitle = bookCard.bookObject.title;
         
         // Remove from front-end
-        libraryGrid.removeChild(child)
+        libraryGrid.removeChild(bookCard);
 
         // Remove from the library
-        const index = library.findIndex(object => object.title === childObjectTitle)
+        const index = library.findIndex(object => object.title === bookCardObjectTitle)
         library = [
             ...library.slice(0, index),
             ...library.slice(index + 1)
-        ]
+        ];
+    }
+
+    // Modify read
+    else if (event.target.className === "btn read") {
+        const buttonRead = event.target;
+        let bookCardObject= event.target.parentNode.parentNode.bookObject;
+
+        buttonRead.classList.remove("read");
+        buttonRead.classList.add("not-read");
+        buttonRead.textContent = "Not Read";
+        bookCardObject["read"] = false;
+    }
+
+    else if (event.target.className === "btn not-read") {
+        const buttonNotRead = event.target;
+        let bookCardObject = event.target.parentNode.parentNode.bookObject;
+
+        buttonNotRead.classList.remove("not-read");
+        buttonNotRead.classList.add("read");
+        buttonNotRead.textContent = "Read";
+        bookCardObject["read"] = true;
     }
 })
