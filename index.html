@@ -24,7 +24,7 @@
                     <div class="author">J. R. R. Tolkien</div>
                     <div class="pages">1077 pages</div>
                     <div class="buttons">
-                        <button class="btn light-green">Read</button>
+                        <button class="btn read">Read</button>
                         <button class="btn">Remove</button>
                     </div>
                 </div>
@@ -34,8 +34,20 @@
             <div class="text">Copyright © 2024 @luchodeco</div>
             <div class="icon"></div>
         </footer>
+        <dialog id="form">
+            <form class="add-book" id="add-book" method="dialog">
+                <div class="title">Add new book</div>
+                <input type="text" id="title" placeholder="Title" maxlength="100" required>
+                <input type="text" id="author" placeholder="Author" maxlength="100" required>
+                <input type="number" id="pages" placeholder="Pages" max="10000" required>
+                <div class="is-read">
+                    <label for="is-read">Have you read it?</label>
+                    <input type="checkbox" name="is-read" id="is-read">
+                </div>
+                <button class="btn submit" id="submit">Submit</button>
+            </form>
+        </dialog>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
