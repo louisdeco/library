@@ -95,8 +95,18 @@ function createBookCard(book) {
 
 // Delete card
 libraryGrid.addEventListener("click", (event) => {
-    alert(event.target.parentNode.bookObject.title)
     if (event.target.className=="btn remove") {
-        libraryGrid.removeChild(event.target.parentNode.parentNode)
+        const child = event.target.parentNode.parentNode
+        const childObjectTitle = child.bookObject.title
+        
+        // Remove from front-end
+        libraryGrid.removeChild(child)
+
+        // Remove from the library
+        const index = library.findIndex(object => object.title === childObjectTitle)
+        library = [
+            ...library.slice(0, index),
+            ...library.slice(index + 1)
+        ]
     }
 })
