@@ -170,6 +170,7 @@ dialog {
     align-self: center;
     gap: var(--spacing-s);
     font-weight: 450;
+    background-color: var(--background-color);
 }
 
 .icon {
