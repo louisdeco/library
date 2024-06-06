@@ -1,13 +1,34 @@
 // Book
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Book {
+    constructor(title, author, pages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
 }
 
 // Library
-let library = [];
+class Library {
+    constructor() {
+        this.books = []
+    }
+
+    addBook(book) {
+        this.books.push(book)
+    }
+
+    deleteBook(title) {
+        this.books = this.books.filter((book) => book.title !== title)
+    }
+
+    getBook(title) {
+        return this.books.find((book) => book.title === title)
+    }
+}
+
+const library = new Library()
+
 
 // User interface
 const addBookButton = document.querySelector(".add");
@@ -38,15 +59,10 @@ submitButton.addEventListener("click", (event) => {
 
         const book = new Book(title, author, pages, read);
 
-        addBookToLibrary(book);
+        library.addBook(book);
         createBookCard(book);
     }
 })
-
-// Add book
-function addBookToLibrary(book) {
-    return library.push(book)
-}
 
 // Create card
 function createBookCard(book) {
@@ -89,8 +105,7 @@ function createBookCard(book) {
     bookCard.appendChild(pages);
     bookCard.appendChild(buttons);
 
-    bookCard.bookObject = library[library.length - 1];
-    
+    bookCard.bookObject = library.books[library.books.length - 1];
     libraryGrid.appendChild(bookCard)
 }
 
@@ -105,12 +120,7 @@ libraryGrid.addEventListener("click", (event) => {
         // Remove from front-end
         libraryGrid.removeChild(bookCard);
 
-        // Remove from the library
-        const index = library.findIndex(object => object.title === bookCardObjectTitle)
-        library = [
-            ...library.slice(0, index),
-            ...library.slice(index + 1)
-        ];
+        library.deleteBook(bookCardObjectTitle)
     }
 
     // Modify read
@@ -121,7 +131,7 @@ libraryGrid.addEventListener("click", (event) => {
         buttonRead.classList.remove("read");
         buttonRead.classList.add("not-read");
         buttonRead.textContent = "Not Read";
-        bookCardObject["read"] = false;
+        bookCardObject["isRead"] = false;
     }
 
     else if (event.target.className === "btn not-read") {
@@ -131,6 +141,6 @@ libraryGrid.addEventListener("click", (event) => {
         buttonNotRead.classList.remove("not-read");
         buttonNotRead.classList.add("read");
         buttonNotRead.textContent = "Read";
-        bookCardObject["read"] = true;
+        bookCardObject["isRead"] = true;
     }
 })
